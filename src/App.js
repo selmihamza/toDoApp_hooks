@@ -15,16 +15,11 @@ const App = () => {
     { text: "item3", isComplited: false }
   ]);
   const [classNameCss, setClassNameCss] = useState("");
-  const [value, setValue] = useState("");
 
-  const onChangeValue = event => {
-    setValue(event.target.value);
+  const onAdditem = item => {
+    setList([...list, { text: item, isComplited: false }]);
   };
 
-  const onAdditem = () => {
-    setList([...list, { text: value, isComplited: false }]);
-    setValue("");
-  };
   const onCompleteItem = i => {
     setClassNameCss("item-clicked");
     setList(
@@ -39,11 +34,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <AddItem
-        onAdditem={onAdditem}
-        onChangeValue={onChangeValue}
-        value={value}
-      />
+      <AddItem onAdditem={onAdditem} />
       <ShowList
         list={list}
         onDeleteItem={onDeleteItem}
